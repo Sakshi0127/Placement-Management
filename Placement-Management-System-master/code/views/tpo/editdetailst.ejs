@@ -1,0 +1,239 @@
+<%- include ('../partials/header.html'); -%>
+<title>Edit TPO Details</title>
+<link rel="stylesheet" href="../../css/tpo.css">
+</head>
+<body>
+    <%- include ('partials/navbar.html'); -%>
+    <br/><br/><br/><br/>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <hr class="hl1">
+                <div class="page-header bg-light">
+                    <h1 class="text-center">Edit Profile</h1>
+                </div>
+                <hr class="hl1"><br/>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10 mx-auto form-group bg-light border rounded border-primary">
+                <div class="row">
+                    <div class="col-md-6 profile-content">
+                        <form action="/tpo/editdetailst" method="post" onsubmit="return validateForm()">
+                            <p class="text-center" style="font-size:xx-large;">TPO Detail</p>
+                            <hr><hr> 
+                            <input type="text" name="user_id" value="<%=res.tid%>" hidden>
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Name</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="tname" value="<%=res.tname%>" id="tname">
+                                    <div id="name-error" style="color: red; display:none;">Name should not contain numbers.</div>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Email</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" value="<%=res.temail%>" readonly>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Mobile No.</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="mobileno" value="<%=res.mobileno%>" id="mobileno">
+                                    <div id="phone-error" style="color: red; display:none;">Phone number should be exactly 10 digits.</div>
+                                </div>
+                            </div>
+                            <hr><hr>    
+                    </div>
+                    <div class="col-md-6 profile-content">
+                        <p class="text-center" style="font-size:xx-large;">College Detail</p>
+                        <hr><hr>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">College Name</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" name="collegename" value="<%=res.collegename%>" id="collegename">
+                                <div id="collegename-error" style="color: red; display:none;">College Name is required.</div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Website</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" name="website" value="<%=res.website%>" id="website">
+                                <div id="website-error" style="color: red; display:none;">Please enter a valid URL for the website.</div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">City</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" name="city" value="<%=res.city%>" id="city">
+                                <div id="city-error" style="color: red; display:none;">City name should only contain letters and spaces.</div>
+                            </div>
+                        </div>
+                        
+                        <hr>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">NIRF Rank</label>
+                            <div class="col-sm-3">
+                                <input type="number" min="1" max="1000" class="form-control" name="nirf" value="<%=res.nirf%>" id="nirf">
+                                <div id="nirf-error" style="color: red; display:none;">NIRF Rank is required and must be between 1 and 1000.</div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">NAAC Accredited</label>
+                            <div class="form-check col-sm-3">
+                                <input class="form-check-input" type="radio" name="nacc" value="yes" <%= res.nacc === 'yes' ? 'checked' : '' %> id="nacc-yes">
+                                <label class="form-check-label">Yes</label>
+                            </div>
+                            <div class="form-check col-sm-3">
+                                <input class="form-check-input" type="radio" name="nacc" value="no" <%= res.nacc === 'no' ? 'checked' : '' %> id="nacc-no">
+                                <label class="form-check-label">No</label>
+                            </div>
+                            <div id="nacc-error" style="color: red; display:none;">Please select NAAC status.</div>
+                        </div>
+                        <hr>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">NCTE</label>
+                            <div class="form-check col-sm-3">
+                                <input class="form-check-input" type="radio" name="ncte" value="yes" <%= res.ncte === 'yes' ? 'checked' : '' %> id="ncte-yes">
+                                <label class="form-check-label">Yes</label>
+                            </div>
+                            <div class="form-check col-sm-3">
+                                <input class="form-check-input" type="radio" name="ncte" value="no" <%= res.ncte === 'no' ? 'checked' : '' %> id="ncte-no">
+                                <label class="form-check-label">No</label>
+                            </div>
+                            <div id="ncte-error" style="color: red; display:none;">Please select NCTE status.</div>
+                        </div>
+                        <hr>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">AICTE</label>
+                            <div class="form-check col-sm-3">
+                                <input class="form-check-input" type="radio" name="aicte" value="yes" <%= res.aicte === 'yes' ? 'checked' : '' %> id="aicte-yes">
+                                <label class="form-check-label">Yes</label>
+                            </div>
+                            <div class="form-check col-sm-3">
+                                <input class="form-check-input" type="radio" name="aicte" value="no" <%= res.aicte === 'no' ? 'checked' : '' %> id="aicte-no">
+                                <label class="form-check-label">No</label>
+                            </div>
+                            <div id="aicte-error" style="color: red; display:none;">Please select AICTE status.</div>
+                        </div>
+                        <hr>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">UGC</label>
+                            <div class="form-check col-sm-3">
+                                <input class="form-check-input" type="radio" name="ugc" value="yes" <%= res.ugc === 'yes' ? 'checked' : '' %> id="ugc-yes">
+                                <label class="form-check-label">Yes</label>
+                            </div>
+                            <div class="form-check col-sm-3">
+                                <input class="form-check-input" type="radio" name="ugc" value="no" <%= res.ugc === 'no' ? 'checked' : '' %> id="ugc-no">
+                                <label class="form-check-label">No</label>
+                            </div>
+                            <div id="ugc-error" style="color: red; display:none;">Please select UGC status.</div>
+                        </div>
+                        <hr><hr>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-outline-info">Update</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+</div>
+
+<script>
+function validateForm() {
+    // Reset error messages
+    document.getElementById('name-error').style.display = 'none';
+    document.getElementById('phone-error').style.display = 'none';
+    document.getElementById('collegename-error').style.display = 'none';
+    document.getElementById('website-error').style.display = 'none';
+    document.getElementById('city-error').style.display = 'none';
+    document.getElementById('nirf-error').style.display = 'none';
+    document.getElementById('nacc-error').style.display = 'none';
+    document.getElementById('ncte-error').style.display = 'none';
+    document.getElementById('aicte-error').style.display = 'none';
+    document.getElementById('ugc-error').style.display = 'none';
+
+    let isValid = true;
+    
+    // Name validation
+    let tname = document.getElementById("tname").value;
+    if (tname === "" || /\d/.test(tname)) {
+        document.getElementById('name-error').style.display = 'block';
+        isValid = false;
+    }
+
+    // Phone validation
+    let phone = document.getElementById("mobileno").value;
+    if (phone.length !== 10 || !/^\d+$/.test(phone)) {
+        document.getElementById('phone-error').style.display = 'block';
+        isValid = false;
+    }
+
+    // College name validation
+    let collegename = document.getElementById("collegename").value;
+    if (collegename === "") {
+        document.getElementById('collegename-error').style.display = 'block';
+        isValid = false;
+    }
+
+    // Website URL validation
+    let website = document.getElementById("website").value;
+    let urlPattern = /^(http|https):\/\/[^ "]+$/;
+    if (website === "" || !urlPattern.test(website)) {
+        document.getElementById('website-error').style.display = 'block';
+        isValid = false;
+    }
+
+    // City validation
+    let city = document.getElementById("city").value;
+    if (city === "" || /\d/.test(city)) {
+        document.getElementById('city-error').style.display = 'block';
+        isValid = false;
+    }
+
+    // NIRF Rank validation
+    let nirf = document.getElementById("nirf").value;
+    if (nirf === "" || nirf < 1 || nirf > 1000) {
+        document.getElementById('nirf-error').style.display = 'block';
+        isValid = false;
+    }
+
+    // NAAC accreditation validation
+    if (!document.getElementById("nacc-yes").checked && !document.getElementById("nacc-no").checked) {
+        document.getElementById('nacc-error').style.display = 'block';
+        isValid = false;
+    }
+
+    // NCTE validation
+    if (!document.getElementById("ncte-yes").checked && !document.getElementById("ncte-no").checked) {
+        document.getElementById('ncte-error').style.display = 'block';
+        isValid = false;
+    }
+
+    // AICTE validation
+    if (!document.getElementById("aicte-yes").checked && !document.getElementById("aicte-no").checked) {
+        document.getElementById('aicte-error').style.display = 'block';
+        isValid = false;
+    }
+
+    // UGC validation
+    if (!document.getElementById("ugc-yes").checked && !document.getElementById("ugc-no").checked) {
+        document.getElementById('ugc-error').style.display = 'block';
+        isValid = false;
+    }
+
+    return isValid;
+}
+</script>
+<%- include ('../partials/footer.html'); -%>

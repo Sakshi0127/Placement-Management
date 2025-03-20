@@ -1,0 +1,186 @@
+<%- include ('../partials/header.html'); -%>
+<title>EditCompanyDetails</title>
+<link rel="stylesheet" href="../../css/company.css">
+<script>
+    // JavaScript to validate form on submit
+    function validateForm(event) {
+        var form = document.forms["editCompanyForm"];
+        var valid = true;
+
+        // Helper function to show error message
+        function showError(input, message) {
+            input.classList.add("is-invalid"); // Add red border if invalid
+            const errorText = document.createElement("small");
+            errorText.classList.add("text-danger");
+            errorText.innerText = message;
+            if (!input.nextElementSibling) {
+                input.parentNode.appendChild(errorText);
+            }
+        }
+
+        // Helper function to remove error message
+        function removeError(input) {
+            input.classList.remove("is-invalid"); // Remove red border if valid
+            if (input.nextElementSibling) {
+                input.parentNode.removeChild(input.nextElementSibling);
+            }
+        }
+
+        // Validate each field
+        var hrName = form["hrname"];
+        var companyName = form["cname"];
+        var website = form["cwebsite"];
+        var city = form["city"];
+        var companyType = form["ctype"];
+        var otherInfo = form["cinfo"];
+        var mobileNo = form["cmobileno"];
+        var employeeCount = form["empl"];
+
+        // Check alphabetic fields
+        if (!/^[a-zA-Z\s]+$/.test(hrName.value)) {
+            showError(hrName, "HR Name should contain only alphabets.");
+            valid = false;
+        } else {
+            removeError(hrName);
+        }
+
+        if (!/^[a-zA-Z\s]+$/.test(companyName.value)) {
+            showError(companyName, "Company Name should contain only alphabets.");
+            valid = false;
+        } else {
+            removeError(companyName);
+        }
+
+        if (!/^[a-zA-Z\s]+$/.test(city.value)) {
+            showError(city, "City should contain only alphabets.");
+            valid = false;
+        } else {
+            removeError(city);
+        }
+
+        if (!/^[a-zA-Z\s]+$/.test(companyType.value)) {
+            showError(companyType, "Company Type should contain only alphabets.");
+            valid = false;
+        } else {
+            removeError(companyType);
+        }
+
+        // Validate website URL
+        const urlPattern = /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*\/?$/;
+        if (!urlPattern.test(website.value)) {
+            showError(website, "Please enter a valid URL.");
+            valid = false;
+        } else {
+            removeError(website);
+        }
+
+        // Validate mobile number (10 digits only)
+        if (!/^\d{10}$/.test(mobileNo.value)) {
+            showError(mobileNo, "Mobile number must be exactly 10 digits.");
+            valid = false;
+        } else {
+            removeError(mobileNo);
+        }
+
+        // Validate employee count (only numbers allowed)
+        if (!/^\d+$/.test(employeeCount.value)) {
+            showError(employeeCount, "Number of Employees should be a number.");
+            valid = false;
+        } else {
+            removeError(employeeCount);
+        }
+
+        // Prevent form submission if any field is invalid
+        if (!valid) {
+            event.preventDefault();
+        }
+    }
+</script>
+</head>
+<body>
+    <%- include ('partials/navbar.html'); -%>
+    <br/><br/><br/><br/>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6 max-auto form-group bg-light border rounded border-primary">
+                <h1 class="text-center">Edit Profile</h1>
+                <hr class="hl1"><hr class="hl1">   
+                <form name="editCompanyForm" method="post" action="/company/editdetailsc" onsubmit="validateForm(event)">
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">HrName</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" value="<%=res.hrname%>" name="hrname" required>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Email</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" value="<%=res.cemail%>" readonly>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">CompanyName</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" value="<%=res.cname%>" name="cname" required>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Website</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" value="<%=res.cwebsite%>" name="cwebsite" required>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">City</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" value="<%=res.city%>" name="city" required>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Company Type</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" value="<%=res.ctype%>" name="ctype" required>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Other Info</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" value="<%=res.cinfo%>" name="cinfo" required>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Mobileno</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" value="<%=res.cmobileno%>" name="cmobileno" required>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">No of Employee</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" value="<%=res.empl%>" name="empl" required>
+                        </div>
+                    </div>
+                    <hr><hr>
+                    <div>
+                        <pre>
+                        <button type="submit" class="btn btn-outline-info">Update</button>
+                        </pre>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+    </div>
+
+    <%- include ('../partials/footer.html'); -%>
+</body>
+</html>

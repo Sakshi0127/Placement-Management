@@ -1,0 +1,117 @@
+#ju{
+    background: url(https://www.mahindrauniversity.edu.in/wp-content/uploads/2023/04/why20is20training2020placement20cell20important1.png) center center/cover no-repeat;
+}
+
+.p1h{
+    font-family: Verdana;
+    font-style: oblique;
+}
+
+hr.f1{
+    border-top: 1px solid lightcoral;
+}
+body.login-signup-page {
+    background-image: url('https://thapar.edu/upload/images/hostelm.jpg'); /* Background image */
+    background-size: cover; /* Cover the entire viewport */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+    height: 100vh; /* Full height of the viewport */
+    display: flex; /* Center the content vertically and horizontally */
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+
+/* Other styles remain unchanged */
+.max-auto {
+    background: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
+    border-radius: 8px; /* Rounded corners */
+    padding: 20px; /* Padding for form content */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    width: 100%;
+    max-width: 400px; /* Limit the width of the form */
+}
+
+.p1h {
+    font-family: Verdana, Geneva, sans-serif;
+    font-style: oblique;
+    font-size: 24px;
+    color: #333;
+    text-align: center;
+}
+
+hr.f1, hr.hl1, hr.last {
+    border-top: 1px solid lightcoral;
+}
+
+.alr {
+    color: red;
+    font-family: cursive;
+}
+
+/* Input field styling */
+input[type="email"], input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/* Button styling */
+button {
+    width: 100%;
+    background-color: #007bff; /* Primary button color */
+    color: white;
+    padding: 10px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+}
+
+/* Links for signup page */
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Error message inside form (login errors) */
+.alert-danger {
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 4px;
+}
+
+
+
+#effview pre{
+    color:lightsalmon;
+}
+
+hr.hl1{
+    border-top: 0.5px solid lightcoral;
+}
+
+.alr{
+    color:red;
+    font-family:cursive;
+}
+
+hr.last{
+    border-top: 1px solid lightskyblue;
+}
